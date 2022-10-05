@@ -1,0 +1,7 @@
+[
+    {"id":"1", "name": "Producto 1", "price": "100", "quantity": "1", "image": "01.jpg", "category": "computer", "description": "Notebook Gamer"},
+    {"id":"2", "name": "Producto 2", "price": "200", "quantity": "2", "image": "02.png", "category": "computer", "description": "Mouse Gamer"},
+    {"id":"3", "name": "Producto 3", "price": "300", "quantity": "3", "image": "03.jpg", "category": "computer", "description": "Escritorio Gamer"},
+    {"id":"4", "name": "Producto 4", "price": "400", "quantity": "4", "image": "04.jpg", "category": "games", "description": "Mini Arcade"},
+    {"id":"5", "name": "Producto 5", "price": "500", "quantity": "5", "image": "05.jpg", "category": "figures", "description": "Clone Trooper"}
+]
