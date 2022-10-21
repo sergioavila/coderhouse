@@ -23,7 +23,7 @@ const CartWidget = () => {
                         <small>11 mins ago</small>
                     </Toast.Header>
                     <Toast.Body>
-                        <ItemListContainer greeting="Tu carrito está vacío."/>
+                        <ItemListContainer greeting="Bienvenido."/>
                     </Toast.Body>
                 </Toast>
             </ToastContainer>

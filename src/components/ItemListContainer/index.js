@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {useParams} from 'react-router-dom'
 
-import data from '../../data.json'
+import {collection, getDocs, getFirestore } from 'firebase/firestore'
 import './style.css'
 
 import CardItem from '../CardItem'
@@ -12,28 +12,24 @@ const Home = () => {
     const { category } = useParams()
 
     const getProducts = () => {
-        return new Promise((res) => {
-            setTimeout(() => {
-                if (category) {
-                    res(data.filter((product) => product.category === category))
-                    setLoading(false)
-                } else {
-                    res(data)
-                    setLoading(false)
-                }
-            }, 2000)
+
+        const db = getFirestore()
+        const productsCollection = collection(db, 'products')
+
+        getDocs( productsCollection ).then( res => {
+            const data = res.docs.map( doc => doc.data() )
+            if(category){
+                setProducts(data.filter( product => product.category === category))
+            }else{
+                setProducts(data)
+            }
+            setLoading(false)
         })
     }
 
     useEffect(() => {
         setLoading(true)
         getProducts()
-            .then((res) => {
-                setProducts(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
     }, [category])
 
 
@@ -48,11 +44,17 @@ const Home = () => {
                         <p>Cargando información...</p>
                     </div>
                 ) : (
-                    products.map((product) => (
-                        <div className="col-lg-4 col-xs-12" key={product.id}>
+                    products.length > 0 ? (
+                        products.map((product) => (
+                        <div className="col-lg-4 col-xs-12" key={product.slug}>
                             <CardItem item={product} />
                         </div>  
                     ))
+                ) : (
+                    <div className="col-12 text-center">
+                        <p>No hay productos en la categoría.</p>
+                    </div>
+                    )
                 )}
             </div>
         </div>
