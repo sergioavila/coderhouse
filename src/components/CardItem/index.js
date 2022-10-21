@@ -5,7 +5,9 @@ const CardItem = ({ item }) => {
     const { name, slug, img, price, category } = item;
     return (
         <div className="card mb-4">
-            <img src={img} className="card-img-top p-4" alt={name} />
+            <Link to={`/item/${slug}`}>
+                <img src={img} className="card-img-top p-4" alt={name} />
+            </Link>
             <div className="card-body">
                 <h5 className="card-title">{name}</h5>
                 <p className="card-text">Categoría: {category}</p>

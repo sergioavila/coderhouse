@@ -1,34 +1,35 @@
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import { useCart } from '../../context/CartContext'
-
+import { FaTrash } from 'react-icons/fa'
+import {Link} from 'react-router-dom'
 
 const ItemListContainer = ({greeting}) => {
-    const { products, removeProduct, clearCart } = useCart()
+    const { products, removeProduct } = useCart()
     return (
         <>
-            <h4>{greeting}</h4>
             {products && products.length > 0 ? (
             <ListGroup>
             {products.map((product) => (
                 <ListGroup.Item key={product.id}>
                     <div className="d-flex justify-content-between">
-                        <div>
-                            <h5>{product.title}</h5>
-                            <p>{product.description}</p>
+                        <div className='d-flex align-items-center'>
+                            <p className='m-0'>{product.name}</p>
                         </div>
                         <div>
-                            <Button variant="danger" onClick={() => removeProduct(product)}>Eliminar</Button>
+                            <Button variant="danger" onClick={() => removeProduct(product)}>
+                                <FaTrash/>
+                            </Button>
                         </div>
                     </div>
                 </ListGroup.Item>
             ))}
-            <Button variant="primary" className=' d-block mt-3 me-auto ms-auto'>
+            <Link to="/carrito" variant="primary" className='d-block mt-3 me-auto ms-auto btn btn-primary'>
                 Realizar el pago
-            </Button>
+            </Link>
             </ListGroup>) : (
                 <><p>No hay productos en el carrito</p>
-                <Button variant="primary" className=' d-block mt-3 me-auto ms-auto' disabled>
+                <Button to="/carrito" variant="primary" className='d-block mt-3 me-auto ms-auto' disabled>
                     Realizar el pago
                 </Button></>
             )}

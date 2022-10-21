@@ -53,3 +53,6 @@
   background: #3b6696;
   border: 1px solid #3b6696;
 }
+.toast-container {
+  z-index: 9999;
+}

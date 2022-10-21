@@ -17,13 +17,13 @@ const useCart = () => {
 
 const CartContexProvider = ({ children }) => {
 
-    const [products, setProducts] = useState()
+    const [products, setProducts] = useState([])
 
     const addProduct = (product) => {
         setProducts( products => [...products, product])
     }
     const removeProduct = (product) => {
-        setProducts( products => products.filter((item) => item.id !== product.id) )
+        setProducts( products => products.filter((item) => item.slug !== product.slug) )
     }
     const clearCart = () => {
         setProducts([])
